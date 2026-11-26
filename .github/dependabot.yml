@@ -38,3 +38,9 @@ updates:
       interval: weekly
     cooldown:
       default-days: 7
+    ignore:
+      # Nos quedamos en Node 24 (LTS). Node 25+ ya no incluye corepack,
+      # que usan los Dockerfiles para activar pnpm.
+      - dependency-name: node
+        update-types:
+          - version-update:semver-major
