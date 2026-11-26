@@ -2,7 +2,7 @@
 # El contexto de build es la raíz del repositorio:
 #   docker build -f apps/web/Dockerfile .
 
-FROM node:24-alpine AS build
+FROM node:24.22.3-alpine@sha256:116b800c3754b440ee0aa3ed2f20f5bf3d99a554bfd9adeea09ea8017f6e85f5 AS build
 ENV PNPM_HOME=/pnpm
 ENV PATH=$PNPM_HOME:$PATH
 RUN corepack enable pnpm
@@ -20,7 +20,7 @@ COPY apps/web apps/web
 RUN pnpm --filter @devjobs/web build
 
 # nginx sin privilegios: el proceso no corre como root y escucha en el 8080
-FROM nginxinc/nginx-unprivileged:1.30-alpine AS runner
+FROM nginx/nginx-unprivileged:1.30.8-alpine@sha256:637c35e46af7bc0dd3d3bcf7162e004e13ab3b370fde7cd416e2ac410b5a985a AS runner
 ENV API_URL=http://api:3000
 
 COPY apps/web/nginx.conf.template /etc/nginx/templates/default.conf.template
