@@ -1,0 +1,13 @@
+{
+  "name": "@devjobs/shared",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Tipos del contrato entre la API y la web de DevJobs.",
+  "type": "module",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts"
+    }
+  }
+}
