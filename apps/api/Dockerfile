@@ -2,7 +2,7 @@
 # El contexto de build es la raíz del repositorio:
 #   docker build -f apps/api/Dockerfile .
 
-FROM node:24.22.3-alpine@sha256:116b800c3754b440ee0aa3ed2f20f5bf3d99a554bfd9adeea09ea8017f6e85f5 AS base
+FROM node:26.13.1-alpine@sha256:6bd9ab43c0ec0190ca7b2d193906cb8b7edf6e7f4afa43ddeccd6452710bffb5 AS base
 ENV PNPM_HOME=/pnpm
 ENV PATH=$PNPM_HOME:$PATH
 RUN corepack enable pnpm
@@ -24,7 +24,7 @@ RUN pnpm --filter @devjobs/api build
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store \
     pnpm --filter @devjobs/api deploy --prod /prod/api
 
-FROM node:24.22.3-alpine@sha256:116b800c3754b440ee0aa3ed2f20f5bf3d99a554bfd9adeea09ea8017f6e85f5 AS runner
+FROM node:26.13.1-alpine@sha256:6bd9ab43c0ec0190ca7b2d193906cb8b7edf6e7f4afa43ddeccd6452710bffb5 AS runner
 ENV NODE_ENV=production
 ENV PORT=3000
 ENV DB_PATH=/data/jobs.db
