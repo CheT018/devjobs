@@ -1,0 +1,12 @@
+.page {
+  padding: 2rem 1rem;
+}
+
+.link {
+  color: var(--primary-light);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
