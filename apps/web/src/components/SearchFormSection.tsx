@@ -69,7 +69,7 @@ export function SearchFormSection({
   return (
     <section className="jobs-search">
       <h1>Encuentra tu próximo trabajo</h1>
-      <p>Explora miles de oportunidades en el sector tecnológico.</p>
+      <p>Explora ofertas del sector tecnológico y filtra por lo que buscas.</p>
 
       <form role="search" onSubmit={handleSubmit}>
         <div className="search-bar">

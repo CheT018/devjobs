@@ -30,7 +30,7 @@ export default function SearchPage() {
       <title>{title}</title>
       <meta
         name="description"
-        content="Explora miles de oportunidades laborales en el sector tecnológico. Encuentra tu próximo empleo en DevJobs."
+        content="Explora ofertas de empleo del sector tecnológico y filtra por tecnología, ubicación y nivel de experiencia."
       />
 
       <SearchFormSection
