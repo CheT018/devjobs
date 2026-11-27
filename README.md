@@ -16,6 +16,7 @@ Es una aplicación full stack en un monorepo: una web en React y una API REST pr
 ## Estructura
 
 ```
+api/              Punto de entrada de la API como función de Vercel
 apps/
   api/            API REST (rutas → controladores → modelos)
   web/            Aplicación React
@@ -45,6 +46,14 @@ docker compose up --build
 ```
 
 La aplicación queda en http://localhost:8080 y la API en http://localhost:8080/api. Los datos se guardan en un volumen, así que sobreviven a los reinicios.
+
+## Despliegue
+
+La demo está en Vercel, en un único proyecto. La web se sirve como estática y la API como una función (`api/index.js`) en el mismo dominio, así que no hace falta configurar CORS. La configuración está en `vercel.json`.
+
+La API se despliega en modo solo lectura: cada instancia crea la base de datos en memoria y carga las ofertas de ejemplo al arrancar. Solo `ALLOW_WRITES=true` activa las escrituras.
+
+Para desplegarlo en otro proyecto de Vercel hay que añadir la variable `ENABLE_EXPERIMENTAL_COREPACK=1`, para que use la versión de pnpm de `package.json`. Con Docker se puede desplegar en cualquier servicio de contenedores; ver [Con Docker](#con-docker).
 
 ## Scripts
 
