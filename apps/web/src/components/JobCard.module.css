@@ -7,20 +7,33 @@
   }
 }
 
+/* En móvil, en fila bajo el texto; desde 640 px, en columna a la derecha */
 .actions {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  align-items: center;
+  gap: 0.75rem;
   text-align: center;
+
+  @media (min-width: 640px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
 }
 
 .details {
+  margin-right: auto;
   color: #09f;
   font-size: 1rem;
   text-decoration: none;
+  white-space: nowrap;
 
   &:hover {
     text-decoration: underline;
+  }
+
+  @media (min-width: 640px) {
+    margin-right: 0;
   }
 }
 

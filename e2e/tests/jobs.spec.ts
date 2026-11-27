@@ -19,6 +19,13 @@ async function openFirstJobDetail(page: Page) {
   return title
 }
 
+async function expectNoHorizontalScroll(page: Page) {
+  const overflow = await page.evaluate(
+    () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+  )
+  expect(overflow, 'la página no debe tener scroll horizontal').toBe(0)
+}
+
 test.describe('Inicio', () => {
   test('muestra el buscador', async ({ page }) => {
     await page.goto('/')
@@ -208,6 +215,29 @@ test.describe('Detalle y candidatura', () => {
     await page.goto('/job/id-que-no-existe')
 
     await expect(page.getByRole('heading', { name: 'Oferta no encontrada' })).toBeVisible()
+  })
+})
+
+test.describe('Diseño adaptable', () => {
+  test('ninguna página tiene scroll horizontal', async ({ page }) => {
+    await page.goto('/')
+    await expect(page.getByRole('searchbox')).toBeVisible()
+    await expectNoHorizontalScroll(page)
+
+    await page.goto('/search')
+    await expect(jobCards(page).first()).toBeVisible()
+    await expectNoHorizontalScroll(page)
+
+    await openFirstJobDetail(page)
+    await expectNoHorizontalScroll(page)
+
+    await page.getByRole('button', { name: 'Iniciar sesión' }).click()
+    await expect(page.getByRole('button', { name: 'Aplicar ahora' })).toBeVisible()
+    await expectNoHorizontalScroll(page)
+
+    await page.goto('/ruta-que-no-existe')
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
+    await expectNoHorizontalScroll(page)
   })
 })
 

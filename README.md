@@ -60,7 +60,7 @@ Se ejecutan desde la raíz del repositorio.
 | `pnpm test:e2e` | Ejecuta los tests de extremo a extremo |
 | `pnpm seed` | Borra las ofertas y vuelve a cargar los datos de ejemplo |
 
-Los tests de extremo a extremo levantan su propia API, con una base de datos en memoria, y su propia web. La primera vez hay que instalar el navegador:
+Los tests de extremo a extremo levantan su propia API, con una base de datos en memoria, y su propia web. Se ejecutan dos veces: en escritorio y en un móvil de 360 px de ancho. La primera vez hay que instalar el navegador:
 
 ```bash
 pnpm --filter @devjobs/e2e exec playwright install chromium

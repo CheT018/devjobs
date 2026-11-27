@@ -24,6 +24,11 @@ export default defineConfig({
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
+    {
+      // Móvil Android con 360 px de ancho, el más habitual en teléfonos
+      name: 'mobile',
+      use: { ...devices['Pixel 7'], viewport: { width: 360, height: 800 } },
+    },
   ],
 
   // Levanta la API con una base de datos en memoria, recién sembrada, y la web
