@@ -77,6 +77,8 @@ pnpm --filter @devjobs/e2e exec playwright install chromium
 | `DELETE` | `/api/jobs/:id` | Elimina una oferta |
 | `GET` | `/api/health` | Comprobación de estado |
 
+En producción (`NODE_ENV=production`, como en la imagen de Docker) la API funciona en modo solo lectura: `POST`, `PATCH` y `DELETE` responden `403`. Se controla con la variable `ALLOW_WRITES`.
+
 ### Parámetros de `GET /api/jobs`
 
 | Parámetro | Descripción |
@@ -135,10 +137,11 @@ Todas son opcionales. Hay un ejemplo en `apps/api/.env.example` y otro en `apps/
 | `PORT` | API | `3000` | Puerto de la API |
 | `DB_PATH` | API | `data/jobs.db` | Archivo SQLite, o `:memory:` para una base de datos temporal |
 | `CORS_ORIGINS` | API | `http://localhost:5173` | Orígenes permitidos, separados por comas |
+| `ALLOW_WRITES` | API | `true`, o `false` con `NODE_ENV=production` | Permite `POST`, `PATCH` y `DELETE`; solo `true` las activa |
 | `VITE_API_URL` | Web | `/api` | URL base de la API |
 
 ## Estado actual
 
 - El inicio de sesión es simulado: un botón alterna el estado, sin usuarios ni contraseñas.
-- Las rutas de escritura de la API no requieren autenticación.
+- Las rutas de escritura de la API no requieren autenticación; por eso están desactivadas en producción.
 - Las candidaturas y los favoritos se guardan en memoria y se pierden al recargar la página.

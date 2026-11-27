@@ -10,10 +10,17 @@ if (seeded > 0) {
   console.log(`Base de datos vacía: ${seeded} ofertas de ejemplo cargadas.`)
 }
 
-const app = createApp({ db, corsOrigins: config.corsOrigins })
+const app = createApp({
+  db,
+  corsOrigins: config.corsOrigins,
+  allowWrites: config.allowWrites,
+})
 
 const server = app.listen(config.port, () => {
   console.log(`API de DevJobs en http://localhost:${config.port}/api`)
+  if (!config.allowWrites) {
+    console.log('Modo solo lectura: POST, PATCH y DELETE responden 403.')
+  }
 })
 
 // Cierre ordenado: deja de aceptar conexiones y cierra la base de datos.

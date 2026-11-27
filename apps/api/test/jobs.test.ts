@@ -20,7 +20,7 @@ before(async () => {
   db = openDatabase(':memory:')
   seedDatabase(db)
 
-  const app = createApp({ db, corsOrigins: ['http://localhost:5173'] })
+  const app = createApp({ db, corsOrigins: ['http://localhost:5173'], allowWrites: true })
 
   await new Promise<void>((resolve) => {
     server = app.listen(0, () => resolve())
