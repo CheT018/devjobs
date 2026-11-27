@@ -62,13 +62,28 @@
   color: var(--text-primary);
 }
 
+/*
+ * El <header> hereda el flex en fila de la cabecera del sitio (index.css).
+ * En móvil se apila para que el botón no se salga de la pantalla.
+ */
 .header {
   margin-bottom: 2rem;
   padding: 0;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+}
+
+@media (min-width: 640px) {
+  .header {
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+  }
 }
 
 .title {
-  font-size: 2.25rem;
+  font-size: 1.75rem;
   font-weight: bold;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
@@ -107,6 +122,10 @@
 }
 
 @media (min-width: 640px) {
+  .title {
+    font-size: 2.25rem;
+  }
+
   .applyButton {
     width: auto;
   }

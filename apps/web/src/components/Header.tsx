@@ -20,7 +20,7 @@ function HeaderUserButton() {
 
 export function Header() {
   return (
-    <header>
+    <header className={styles.header}>
       <Link to="/" className={styles.logo}>
         <svg
           aria-hidden="true"
