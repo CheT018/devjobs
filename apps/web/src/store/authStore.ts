@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
 
 interface AuthState {
   isLoggedIn: boolean
@@ -6,8 +7,14 @@ interface AuthState {
   logout: () => void
 }
 
-export const useAuthStore = create<AuthState>()((set) => ({
-  isLoggedIn: false,
-  login: () => set({ isLoggedIn: true }),
-  logout: () => set({ isLoggedIn: false }),
-}))
+// Sesión simulada. Se guarda en localStorage para no cerrarla al recargar
+export const useAuthStore = create<AuthState>()(
+  persist(
+    (set) => ({
+      isLoggedIn: false,
+      login: () => set({ isLoggedIn: true }),
+      logout: () => set({ isLoggedIn: false }),
+    }),
+    { name: 'devjobs-auth' },
+  ),
+)

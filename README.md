@@ -144,4 +144,4 @@ Todas son opcionales. Hay un ejemplo en `apps/api/.env.example` y otro en `apps/
 
 - El inicio de sesión es simulado: un botón alterna el estado, sin usuarios ni contraseñas.
 - Las rutas de escritura de la API no requieren autenticación; por eso están desactivadas en producción.
-- Las candidaturas y los favoritos se guardan en memoria y se pierden al recargar la página.
+- La sesión, las candidaturas y los favoritos se guardan en el `localStorage` del navegador, no en la API.
