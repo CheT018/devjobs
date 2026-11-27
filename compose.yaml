@@ -6,6 +6,10 @@ services:
     build:
       context: .
       dockerfile: apps/api/Dockerfile
+    # La imagen usa NODE_ENV=production, así que la API arranca en solo lectura.
+    # Para poder crear, editar y borrar ofertas:
+    # environment:
+    #   ALLOW_WRITES: 'true'
     volumes:
       - api-data:/data
     restart: unless-stopped

@@ -9,10 +9,12 @@ import { createJobsRouter } from './routes/jobs.js'
 interface AppOptions {
   db: Db
   corsOrigins?: string[]
+  /** Si es false, las rutas de escritura responden 403. */
+  allowWrites?: boolean
 }
 
 /** Crea la aplicación Express sin ponerla a escuchar, para poder testearla. */
-export function createApp({ db, corsOrigins = [] }: AppOptions): Express {
+export function createApp({ db, corsOrigins = [], allowWrites = false }: AppOptions): Express {
   const app = express()
 
   app.disable('x-powered-by')
@@ -24,7 +26,7 @@ export function createApp({ db, corsOrigins = [] }: AppOptions): Express {
   })
 
   const jobController = new JobController(new JobModel(db))
-  app.use('/api/jobs', createJobsRouter(jobController))
+  app.use('/api/jobs', createJobsRouter(jobController, { allowWrites }))
 
   app.use(notFoundHandler)
   app.use(errorHandler)
