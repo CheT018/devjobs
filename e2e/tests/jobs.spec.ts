@@ -185,6 +185,25 @@ test.describe('Detalle y candidatura', () => {
     await expect(firstJob.getByRole('button', { name: 'Agregar a favoritos' })).toBeVisible()
   })
 
+  test('conserva favoritos, sesión y candidaturas al recargar la página', async ({ page }) => {
+    await page.goto('/search')
+    await page.getByRole('button', { name: 'Iniciar sesión' }).click()
+
+    const firstJob = jobCards(page).first()
+    await firstJob.getByRole('button', { name: 'Agregar a favoritos' }).click()
+    await firstJob.getByRole('button', { name: 'Aplicar' }).click()
+    await expect(firstJob.getByRole('button', { name: 'Aplicado' })).toBeVisible()
+
+    await page.reload()
+
+    await expect(page.getByRole('button', { name: 'Cerrar sesión' })).toBeVisible()
+    await expect(firstJob.getByRole('button', { name: 'Quitar de favoritos' })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    )
+    await expect(firstJob.getByRole('button', { name: 'Aplicado' })).toBeDisabled()
+  })
+
   test('avisa si la oferta no existe', async ({ page }) => {
     await page.goto('/job/id-que-no-existe')
 
