@@ -59,7 +59,7 @@ pnpm dev
 - Web: http://localhost:5173
 - API: http://localhost:3000/api
 
-La primera vez que arranca, la API crea la base de datos en `apps/api/data/jobs.db` y carga 34 ofertas de ejemplo. En desarrollo, Vite redirige las peticiones a `/api` hacia la API local.
+La primera vez que arranca, la API crea la base de datos en `apps/api/data/jobs.db` y carga 100 ofertas de ejemplo. En desarrollo, Vite redirige las peticiones a `/api` hacia la API local.
 
 ### Con Docker
 
