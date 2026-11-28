@@ -2,6 +2,7 @@ import type { JobLevel } from '@devjobs/shared'
 import { useSearchParams } from 'react-router'
 import { LEVEL_OPTIONS, RESULTS_PER_PAGE } from '../constants/filters'
 import { searchJobs } from '../services/jobs'
+import { getCurrentPage } from '../utils/searchParams'
 import { useAsync } from './useAsync'
 
 export interface SearchFilters {
@@ -24,7 +25,7 @@ export function useJobSearch() {
     location: searchParams.get('location') ?? '',
     level: toLevel(searchParams.get('level')),
   }
-  const currentPage = Math.max(1, Math.trunc(Number(searchParams.get('page'))) || 1)
+  const currentPage = getCurrentPage(searchParams)
 
   const query = new URLSearchParams()
   for (const [name, value] of Object.entries({ text, ...filters })) {
