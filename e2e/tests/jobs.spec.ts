@@ -151,25 +151,20 @@ test.describe('Detalle y candidatura', () => {
     await expect(page.getByRole('listitem').first()).toBeVisible()
   })
 
-  test('exige iniciar sesión para aplicar', async ({ page }) => {
+  test('permite aplicar desde el detalle', async ({ page }) => {
     await searchFromHome(page, 'JavaScript')
     await expect(page).toHaveURL(/\/search\?text=JavaScript/)
 
-    await expect(jobCards(page).first().getByRole('button', { name: 'Aplicar' })).toBeDisabled()
+    // Sin cuentas de usuario: se puede aplicar directamente
+    await expect(jobCards(page).first().getByRole('button', { name: 'Aplicar' })).toBeEnabled()
 
     await openFirstJobDetail(page)
-    await expect(page.getByRole('button', { name: 'Inicia sesión para aplicar' })).toBeDisabled()
-
-    await page.getByRole('button', { name: 'Iniciar sesión' }).click()
-    await expect(page.getByRole('button', { name: 'Cerrar sesión' })).toBeVisible()
-
     await page.getByRole('button', { name: 'Aplicar ahora' }).click()
     await expect(page.getByRole('button', { name: 'Aplicado' })).toBeDisabled()
   })
 
   test('la candidatura se refleja en el listado y en el detalle', async ({ page }) => {
     await page.goto('/search')
-    await page.getByRole('button', { name: 'Iniciar sesión' }).click()
 
     const firstJob = jobCards(page).first()
     await firstJob.getByRole('button', { name: 'Aplicar' }).click()
@@ -192,9 +187,8 @@ test.describe('Detalle y candidatura', () => {
     await expect(firstJob.getByRole('button', { name: 'Agregar a favoritos' })).toBeVisible()
   })
 
-  test('conserva favoritos, sesión y candidaturas al recargar la página', async ({ page }) => {
+  test('conserva favoritos y candidaturas al recargar la página', async ({ page }) => {
     await page.goto('/search')
-    await page.getByRole('button', { name: 'Iniciar sesión' }).click()
 
     const firstJob = jobCards(page).first()
     await firstJob.getByRole('button', { name: 'Agregar a favoritos' }).click()
@@ -203,7 +197,6 @@ test.describe('Detalle y candidatura', () => {
 
     await page.reload()
 
-    await expect(page.getByRole('button', { name: 'Cerrar sesión' })).toBeVisible()
     await expect(firstJob.getByRole('button', { name: 'Quitar de favoritos' })).toHaveAttribute(
       'aria-pressed',
       'true',
@@ -229,9 +222,6 @@ test.describe('Diseño adaptable', () => {
     await expectNoHorizontalScroll(page)
 
     await openFirstJobDetail(page)
-    await expectNoHorizontalScroll(page)
-
-    await page.getByRole('button', { name: 'Iniciar sesión' }).click()
     await expect(page.getByRole('button', { name: 'Aplicar ahora' })).toBeVisible()
     await expectNoHorizontalScroll(page)
 

@@ -37,12 +37,6 @@
   }
 }
 
-.applyHint {
-  display: flex;
-  flex-direction: column;
-  cursor: not-allowed;
-}
-
 .btnFavorite {
   display: inline-flex;
   align-items: center;

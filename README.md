@@ -20,7 +20,7 @@ Es una aplicación full stack en un monorepo: una web en React y una API REST pr
 DevJobs empezó como proyecto del bootcamp de midudev en [JsCamp](https://www.jscamp.dev/). La web, la API, la base de datos, los tests, Docker y la integración continua se hicieron siguiendo el curso. Después fui añadiendo:
 
 - API de solo lectura en producción, para proteger la demo pública ([#7](https://github.com/CheT018/devjobs/pull/7)).
-- Sesión, favoritos y candidaturas que se conservan al recargar ([#8](https://github.com/CheT018/devjobs/pull/8)).
+- Favoritos y candidaturas que se conservan al recargar ([#8](https://github.com/CheT018/devjobs/pull/8)).
 - Diseño adaptado al móvil, con los tests de extremo a extremo también en móvil ([#9](https://github.com/CheT018/devjobs/pull/9)).
 - Textos de la portada ajustados a lo que hace la aplicación ([#10](https://github.com/CheT018/devjobs/pull/10)).
 - Despliegue en Vercel, con la web y la API en el mismo dominio ([#11](https://github.com/CheT018/devjobs/pull/11)).
@@ -173,6 +173,5 @@ Todas son opcionales. Hay un ejemplo en `apps/api/.env.example` y otro en `apps/
 
 ## Estado actual
 
-- El inicio de sesión es simulado: un botón alterna el estado, sin usuarios ni contraseñas.
 - Las rutas de escritura de la API no requieren autenticación; por eso están desactivadas en producción.
-- La sesión, las candidaturas y los favoritos se guardan en el `localStorage` del navegador, no en la API.
+- No hay cuentas de usuario: las candidaturas y los favoritos se guardan en el `localStorage` del navegador, no en la API.

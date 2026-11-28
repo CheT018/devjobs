@@ -5,18 +5,7 @@ import { useFavoritesStore } from '../store/favoritesStore'
 import styles from './JobCard.module.css'
 
 function JobCardApplyButton({ jobId }: { jobId: string }) {
-  const { isLoggedIn, hasApplied, apply } = useApplication(jobId)
-
-  if (!isLoggedIn) {
-    // El botón desactivado no recibe el ratón: el aviso va en el contenedor
-    return (
-      <span className={styles.applyHint} title="Inicia sesión para aplicar">
-        <button className="button-apply-job" disabled>
-          Aplicar
-        </button>
-      </span>
-    )
-  }
+  const { hasApplied, apply } = useApplication(jobId)
 
   return (
     <button
