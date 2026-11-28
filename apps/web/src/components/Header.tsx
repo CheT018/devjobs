@@ -27,6 +27,12 @@ export function Header() {
         >
           Empleos
         </NavLink>
+        <NavLink
+          to="/saved"
+          className={({ isActive }) => (isActive ? styles.navLinkActive : undefined)}
+        >
+          Guardados
+        </NavLink>
       </nav>
     </header>
   )

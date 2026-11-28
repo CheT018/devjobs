@@ -210,6 +210,76 @@ test.describe('Detalle y candidatura', () => {
   })
 })
 
+test.describe('Guardados', () => {
+  test('avisa cuando no hay favoritos ni candidaturas', async ({ page }) => {
+    await page.goto('/saved')
+
+    await expect(page.getByText('Aún no tienes favoritos')).toBeVisible()
+
+    await page.getByRole('link', { name: 'Candidaturas' }).click()
+    await expect(page).toHaveURL(/\/saved\?tab=applications/)
+    await expect(page.getByText('Aún no has aplicado a ninguna oferta')).toBeVisible()
+  })
+
+  test('muestra los favoritos y quita los que se desmarcan', async ({ page }) => {
+    await page.goto('/search')
+
+    const firstJob = jobCards(page).first()
+    const title = await firstJob.getByRole('heading', { level: 3 }).innerText()
+    await firstJob.getByRole('button', { name: 'Agregar a favoritos' }).click()
+
+    await page.getByRole('link', { name: 'Guardados' }).click()
+    await expect(page).toHaveURL(/\/saved$/)
+    await expect(jobCards(page)).toHaveCount(1)
+    await expect(jobCards(page).first()).toContainText(title)
+
+    await jobCards(page).first().getByRole('button', { name: 'Quitar de favoritos' }).click()
+    await expect(page.getByText('Aún no tienes favoritos')).toBeVisible()
+  })
+
+  test('muestra las candidaturas en su pestaña', async ({ page }) => {
+    await page.goto('/search')
+
+    const firstJob = jobCards(page).first()
+    const title = await firstJob.getByRole('heading', { level: 3 }).innerText()
+    await firstJob.getByRole('button', { name: 'Aplicar' }).click()
+    await expect(firstJob.getByRole('button', { name: 'Aplicado' })).toBeVisible()
+
+    await page.goto('/saved?tab=applications')
+    await expect(page.getByRole('link', { name: 'Candidaturas' })).toHaveAttribute(
+      'aria-current',
+      'page',
+    )
+    await expect(jobCards(page)).toHaveCount(1)
+    await expect(jobCards(page).first()).toContainText(title)
+
+    await page.getByRole('link', { name: 'Favoritos' }).click()
+    await expect(page.getByText('Aún no tienes favoritos')).toBeVisible()
+  })
+
+  test('pagina los favoritos y vuelve atrás al vaciar la última página', async ({ page }) => {
+    await page.goto('/search')
+    await expect(jobCards(page)).toHaveCount(4)
+    for (const card of await jobCards(page).all()) {
+      await card.getByRole('button', { name: 'Agregar a favoritos' }).click()
+    }
+
+    await page.goto('/search?page=2')
+    await jobCards(page).first().getByRole('button', { name: 'Agregar a favoritos' }).click()
+    await expect(
+      jobCards(page).first().getByRole('button', { name: 'Quitar de favoritos' }),
+    ).toBeVisible()
+
+    await page.goto('/saved?page=2')
+    await expect(page.getByRole('link', { name: '2' })).toHaveAttribute('aria-current', 'page')
+    await expect(jobCards(page)).toHaveCount(1)
+
+    await jobCards(page).first().getByRole('button', { name: 'Quitar de favoritos' }).click()
+    await expect(jobCards(page)).toHaveCount(4)
+    await expect(page.getByRole('navigation', { name: 'Paginación' })).toHaveCount(0)
+  })
+})
+
 test.describe('Diseño adaptable', () => {
   test('ninguna página tiene scroll horizontal', async ({ page }) => {
     await page.goto('/')
@@ -222,6 +292,11 @@ test.describe('Diseño adaptable', () => {
 
     await openFirstJobDetail(page)
     await expect(page.getByRole('button', { name: 'Aplicar ahora' })).toBeVisible()
+    await expectNoHorizontalScroll(page)
+
+    await page.getByRole('button', { name: 'Aplicar ahora' }).click()
+    await page.goto('/saved?tab=applications')
+    await expect(jobCards(page).first()).toBeVisible()
     await expectNoHorizontalScroll(page)
 
     await page.goto('/ruta-que-no-existe')

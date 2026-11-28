@@ -7,6 +7,7 @@ import { PageLoader } from './components/PageLoader'
 const HomePage = lazy(() => import('./pages/Home'))
 const SearchPage = lazy(() => import('./pages/Search'))
 const DetailPage = lazy(() => import('./pages/Detail'))
+const SavedPage = lazy(() => import('./pages/Saved'))
 const NotFoundPage = lazy(() => import('./pages/NotFound'))
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/job/:id" element={<DetailPage />} />
+          <Route path="/saved" element={<SavedPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
