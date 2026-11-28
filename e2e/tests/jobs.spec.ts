@@ -68,9 +68,21 @@ test.describe('Búsqueda y filtros', () => {
     await expect(jobCards(page).first()).toBeVisible()
   })
 
-  test('conserva los filtros de la URL al cargar la página', async ({ page }) => {
-    await page.goto('/search?technology=python&level=mid')
+  test('filtra por modalidad', async ({ page }) => {
+    await page.goto('/search')
+    await expect(jobCards(page).first()).toBeVisible()
 
+    await page.getByRole('combobox', { name: 'Modalidad' }).selectOption({ label: 'Presencial' })
+
+    await expect(page).toHaveURL(/modality=onsite/)
+    await expect(page.locator('article:not([data-modality="onsite"])')).toHaveCount(0)
+    await expect(jobCards(page).first()).toBeVisible()
+  })
+
+  test('conserva los filtros de la URL al cargar la página', async ({ page }) => {
+    await page.goto('/search?technology=python&modality=onsite&level=mid')
+
+    await expect(page.getByRole('combobox', { name: 'Modalidad' })).toHaveValue('onsite')
     await expect(page.getByRole('combobox', { name: 'Tecnología' })).toHaveValue('python')
     await expect(page.getByRole('combobox', { name: 'Nivel de experiencia' })).toHaveValue('mid')
     await expect(jobCards(page).first()).toBeVisible()
@@ -149,6 +161,18 @@ test.describe('Detalle y candidatura', () => {
     await expect(page.getByRole('heading', { name: 'Descripción del puesto' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Responsabilidades' })).toBeVisible()
     await expect(page.getByRole('listitem').first()).toBeVisible()
+  })
+
+  test('muestra nivel, modalidad y tecnologías en la tarjeta y el detalle', async ({ page }) => {
+    await page.goto('/search')
+
+    const expectedTags = ['Senior', 'Remoto', 'react', 'node', 'javascript']
+    const cardTags = jobCards(page).first().getByRole('list', { name: 'Etiquetas' })
+    await expect(cardTags.getByRole('listitem')).toHaveText(expectedTags)
+
+    await openFirstJobDetail(page)
+    const detailTags = page.getByRole('list', { name: 'Etiquetas' })
+    await expect(detailTags.getByRole('listitem')).toHaveText(expectedTags)
   })
 
   test('permite aplicar desde el detalle', async ({ page }) => {

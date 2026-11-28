@@ -3,6 +3,7 @@ import DOMPurify from 'dompurify'
 import { useMemo } from 'react'
 import { Link, useParams } from 'react-router'
 import snarkdown from 'snarkdown'
+import { JobTags } from '../components/JobTags'
 import { useApplication } from '../hooks/useApplication'
 import { useJob } from '../hooks/useJob'
 import styles from './Detail.module.css'
@@ -52,6 +53,7 @@ function JobDetail({ job }: { job: Job }) {
           <p className={styles.meta}>
             {job.company} · {job.location}
           </p>
+          <JobTags data={job.data} />
         </div>
         <DetailApplyButton jobId={job.id} />
       </header>

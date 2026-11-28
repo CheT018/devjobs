@@ -17,7 +17,7 @@ export default function HomePage() {
       <title>DevJobs - Empleos para desarrolladores</title>
       <meta
         name="description"
-        content="DevJobs es un portal de empleo para desarrolladores. Busca ofertas por tecnología, ubicación y nivel de experiencia."
+        content="DevJobs es un portal de empleo para desarrolladores. Busca ofertas por tecnología, ubicación, modalidad y nivel de experiencia."
       />
 
       <section>
@@ -25,7 +25,7 @@ export default function HomePage() {
 
         <h1>Encuentra el trabajo de tus sueños</h1>
 
-        <p>Busca ofertas de desarrollo por tecnología, ubicación y nivel de experiencia.</p>
+        <p>Busca ofertas de desarrollo por tecnología, ubicación, modalidad y nivel de experiencia.</p>
 
         <form role="search" onSubmit={handleSearch}>
           <div>
@@ -72,7 +72,7 @@ export default function HomePage() {
               <path d="M216,56H176V48a24,24,0,0,0-24-24H104A24,24,0,0,0,80,48v8H40A16,16,0,0,0,24,72V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V72A16,16,0,0,0,216,56ZM96,48a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96ZM216,72v41.61A184,184,0,0,1,128,136a184.07,184.07,0,0,1-88-22.38V72Zm0,128H40V131.64A200.19,200.19,0,0,0,128,152a200.25,200.25,0,0,0,88-20.37V200ZM104,112a8,8,0,0,1,8-8h32a8,8,0,0,1,0,16H112A8,8,0,0,1,104,112Z" />
             </svg>
             <h3>Busca y filtra</h3>
-            <p>Busca por título, empresa o tecnología y filtra por ubicación y nivel.</p>
+            <p>Busca por título, empresa o tecnología y filtra por ubicación, modalidad y nivel.</p>
           </article>
 
           <article>

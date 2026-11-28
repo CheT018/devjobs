@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/CheT018/devjobs/actions/workflows/ci.yml/badge.svg)](https://github.com/CheT018/devjobs/actions/workflows/ci.yml)
 
-Portal de empleo para desarrolladores. Permite buscar ofertas por texto, filtrarlas por tecnología, ubicación y nivel de experiencia, y consultar el detalle de cada una.
+Portal de empleo para desarrolladores. Permite buscar ofertas por texto, filtrarlas por tecnología, ubicación, modalidad y nivel de experiencia, y consultar el detalle de cada una.
 
 Es una aplicación full stack en un monorepo: una web en React y una API REST propia con base de datos SQLite.
 

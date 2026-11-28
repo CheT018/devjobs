@@ -30,7 +30,7 @@ export default function SearchPage() {
       <title>{title}</title>
       <meta
         name="description"
-        content="Explora ofertas de empleo del sector tecnológico y filtra por tecnología, ubicación y nivel de experiencia."
+        content="Explora ofertas de empleo del sector tecnológico y filtra por tecnología, ubicación, modalidad y nivel de experiencia."
       />
 
       <SearchFormSection

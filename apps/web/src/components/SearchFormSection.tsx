@@ -1,5 +1,10 @@
 import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from 'react'
-import { LEVEL_OPTIONS, LOCATION_OPTIONS, TECHNOLOGY_OPTIONS } from '../constants/filters'
+import {
+  LEVEL_OPTIONS,
+  LOCATION_OPTIONS,
+  MODALITY_OPTIONS,
+  TECHNOLOGY_OPTIONS,
+} from '../constants/filters'
 import type { SearchFilters } from '../hooks/useJobSearch'
 
 const DEBOUNCE_MS = 500
@@ -123,6 +128,20 @@ export function SearchFormSection({
             {LOCATION_OPTIONS.map((location) => (
               <option key={location} value={location}>
                 {location}
+              </option>
+            ))}
+          </select>
+
+          <select
+            name="modality"
+            aria-label="Modalidad"
+            value={filters.modality}
+            onChange={handleFilterChange('modality')}
+          >
+            <option value="">Modalidad</option>
+            {MODALITY_OPTIONS.map(({ value, label }) => (
+              <option key={value} value={value}>
+                {label}
               </option>
             ))}
           </select>

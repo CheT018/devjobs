@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 import { useApplication } from '../hooks/useApplication'
 import { useFavoritesStore } from '../store/favoritesStore'
 import styles from './JobCard.module.css'
+import { JobTags } from './JobTags'
 
 function JobCardApplyButton({ jobId }: { jobId: string }) {
   const { hasApplied, apply } = useApplication(jobId)
@@ -68,6 +69,7 @@ export function JobCard({ job }: { job: JobSummary }) {
           {job.company} | {job.location}
         </small>
         <p>{job.description}</p>
+        <JobTags data={job.data} />
       </div>
 
       <div className={styles.actions}>
