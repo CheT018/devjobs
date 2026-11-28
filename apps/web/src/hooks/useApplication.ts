@@ -1,17 +1,12 @@
 import { useApplicationsStore } from '../store/applicationsStore'
-import { useAuthStore } from '../store/authStore'
 
-/** Estado de la candidatura a una oferta. Solo se puede aplicar con sesión iniciada. */
+/** Estado de la candidatura a una oferta. La candidatura se guarda en el navegador. */
 export function useApplication(jobId: string) {
-  const isLoggedIn = useAuthStore((state) => state.isLoggedIn)
-  const isApplied = useApplicationsStore((state) => state.appliedJobIds.includes(jobId))
+  const hasApplied = useApplicationsStore((state) => state.appliedJobIds.includes(jobId))
   const applyToJob = useApplicationsStore((state) => state.apply)
 
   return {
-    isLoggedIn,
-    hasApplied: isLoggedIn && isApplied,
-    apply: () => {
-      if (isLoggedIn) applyToJob(jobId)
-    },
+    hasApplied,
+    apply: () => applyToJob(jobId),
   }
 }

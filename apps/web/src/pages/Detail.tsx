@@ -22,15 +22,7 @@ function JobSection({ title, content }: { title: string; content?: string }) {
 }
 
 function DetailApplyButton({ jobId }: { jobId: string }) {
-  const { isLoggedIn, hasApplied, apply } = useApplication(jobId)
-
-  if (!isLoggedIn) {
-    return (
-      <button disabled className={styles.applyButton}>
-        Inicia sesión para aplicar
-      </button>
-    )
-  }
+  const { hasApplied, apply } = useApplication(jobId)
 
   return (
     <button onClick={apply} disabled={hasApplied} className={styles.applyButton}>
