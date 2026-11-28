@@ -32,7 +32,7 @@ DevJobs empezó como proyecto del bootcamp de midudev en [JsCamp](https://www.js
 | --- | --- |
 | Web | React 19, TypeScript, Vite, React Router, Zustand, CSS Modules |
 | API | Node.js, Express 5, TypeScript, SQLite (better-sqlite3), Zod |
-| Tests | `node:test` para la API, Playwright para los tests de extremo a extremo |
+| Tests | `node:test` para la API, Vitest y Testing Library para la web, Playwright para los tests de extremo a extremo |
 | Herramientas | pnpm workspaces, Oxlint, GitHub Actions, Docker, Vercel |
 
 ## Estructura
@@ -87,7 +87,7 @@ Se ejecutan desde la raíz del repositorio.
 | `pnpm build` | Compila la API y la web |
 | `pnpm lint` | Analiza el código con Oxlint |
 | `pnpm typecheck` | Comprueba los tipos de todos los paquetes |
-| `pnpm test` | Ejecuta los tests de la API |
+| `pnpm test` | Ejecuta los tests de la API y los de la web |
 | `pnpm test:e2e` | Ejecuta los tests de extremo a extremo |
 | `pnpm seed` | Borra las ofertas y vuelve a cargar los datos de ejemplo |
 
