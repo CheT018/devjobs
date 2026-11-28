@@ -7,7 +7,7 @@ import { createApp } from '../src/app.js'
 import { openDatabase, type Db } from '../src/db/database.js'
 import { seedDatabase } from '../src/db/seed.js'
 
-const SEED_TOTAL = 34
+const SEED_TOTAL = 100
 const FIRST_JOB_ID = '7a4d1d8b-1e45-4d8c-9f1a-8c2f9a9121a4'
 
 let db: Db

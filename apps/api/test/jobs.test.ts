@@ -7,7 +7,7 @@ import { createApp } from '../src/app.js'
 import { openDatabase, type Db } from '../src/db/database.js'
 import { seedDatabase } from '../src/db/seed.js'
 
-const SEED_TOTAL = 34
+const SEED_TOTAL = 100
 const FIRST_JOB_ID = '7a4d1d8b-1e45-4d8c-9f1a-8c2f9a9121a4'
 const SECOND_JOB_ID = 'd35b2c89-5d60-4f26-b19a-6cfb2f1a0f57'
 const UNKNOWN_ID = 'id-que-no-existe'
@@ -96,7 +96,7 @@ describe('GET /api/jobs', () => {
   })
 
   test('filtra por tecnología sin distinguir mayúsculas', async () => {
-    const json = await listJobs('?technology=React')
+    const json = await listJobs('?technology=React&limit=50')
 
     assert.ok(json.total > 0)
     assert.equal(json.total, json.data.length)
