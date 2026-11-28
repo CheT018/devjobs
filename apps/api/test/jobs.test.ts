@@ -141,7 +141,42 @@ describe('GET /api/jobs', () => {
     assert.deepEqual(json.data, [])
   })
 
+  test('filtra por ids e ignora los que no existen', async () => {
+    const json = await listJobs(`?ids=${SECOND_JOB_ID},${UNKNOWN_ID},${FIRST_JOB_ID}`)
+
+    assert.equal(json.total, 2)
+    assert.deepEqual(
+      json.data.map((job) => job.id),
+      [FIRST_JOB_ID, SECOND_JOB_ID],
+    )
+  })
+
+  test('combina ids con otros filtros y con la paginación', async () => {
+    const ids = `${FIRST_JOB_ID},${SECOND_JOB_ID}`
+
+    const paged = await listJobs(`?ids=${ids}&limit=1&offset=1`)
+    assert.equal(paged.total, 2)
+    assert.deepEqual(
+      paged.data.map((job) => job.id),
+      [SECOND_JOB_ID],
+    )
+
+    const filtered = await listJobs(`?ids=${ids}&text=no-existe-este-texto`)
+    assert.equal(filtered.total, 0)
+  })
+
+  test('ignora ids vacíos y repetidos', async () => {
+    const json = await listJobs(`?ids=${FIRST_JOB_ID},,${FIRST_JOB_ID}`)
+    assert.equal(json.total, 1)
+
+    const empty = await listJobs('?ids=')
+    assert.equal(empty.total, SEED_TOTAL)
+  })
+
   test('rechaza parámetros de consulta no válidos', async () => {
+    const tooManyIds = Array.from({ length: 101 }, (_, index) => `id-${index}`).join(',')
+    await request('GET', `/api/jobs?ids=${tooManyIds}`, 400)
+    await request('GET', `/api/jobs?ids=${FIRST_JOB_ID}&ids=${SECOND_JOB_ID}`, 400)
     await request('GET', '/api/jobs?limit=0', 400)
     await request('GET', '/api/jobs?limit=1000', 400)
     await request('GET', '/api/jobs?offset=-1', 400)

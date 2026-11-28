@@ -58,6 +58,11 @@ function buildWhere(filters: JobFilters): { where: string; params: string[] } {
   const conditions: string[] = []
   const params: string[] = []
 
+  if (filters.ids && filters.ids.length > 0) {
+    conditions.push(`j.id IN (${filters.ids.map(() => '?').join(', ')})`)
+    params.push(...filters.ids)
+  }
+
   if (filters.text) {
     const pattern = toLikePattern(filters.text)
     conditions.push(`(
