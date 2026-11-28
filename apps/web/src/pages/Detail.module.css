@@ -1,13 +1,20 @@
+/*
+ * Columna centrada de unos 42rem de texto (≈ 80 caracteres por línea), con
+ * márgenes que crecen con la pantalla. El max-width incluye el padding.
+ */
 .page {
   width: 100%;
-  max-width: 1280px;
+  max-width: calc(42rem + 2 * 2rem);
   margin: 0 auto;
-  padding: 0 1rem;
+  padding-inline: 1.25rem;
+
+  @media (min-width: 640px) {
+    padding-inline: 2rem;
+  }
 }
 
 .container {
   padding-block: 2rem;
-  max-width: 64rem;
 }
 
 .loading,

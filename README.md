@@ -1,16 +1,18 @@
 # DevJobs
 
+[![CI](https://github.com/CheT018/devjobs/actions/workflows/ci.yml/badge.svg)](https://github.com/CheT018/devjobs/actions/workflows/ci.yml)
+
 Portal de empleo para desarrolladores. Permite buscar ofertas por texto, filtrarlas por tecnología, ubicación y nivel de experiencia, y consultar el detalle de cada una.
 
 Es una aplicación full stack en un monorepo: una web en React y una API REST propia con base de datos SQLite.
 
-**[Ver la demo](https://devjobs-lilac.vercel.app)** · [![CI](https://github.com/CheT018/devjobs/actions/workflows/ci.yml/badge.svg)](https://github.com/CheT018/devjobs/actions/workflows/ci.yml)
+**Demo:** [devjobs-lilac.vercel.app](https://devjobs-lilac.vercel.app)
 
 ![Portada de DevJobs](.github/screenshots/home.png)
 
 <p>
-  <img src=".github/screenshots/detail.png" alt="Detalle de una oferta en escritorio" width="68%">
-  <img src=".github/screenshots/mobile.png" alt="Búsqueda en un móvil, con una oferta marcada como favorita" width="24%">
+  <img src=".github/screenshots/detail.png" alt="Detalle de una oferta en escritorio" width="71%">
+  <img src=".github/screenshots/mobile.png" alt="Búsqueda en un móvil, con una oferta marcada como favorita" width="20.5%">
 </p>
 
 ## Origen del proyecto
