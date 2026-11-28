@@ -123,6 +123,25 @@ test.describe('Búsqueda y filtros', () => {
 
     await expect(jobCards(page).first()).toBeVisible()
   })
+
+  test('muestra un esqueleto mientras cargan los empleos', async ({ page }) => {
+    let releaseResponse!: () => void
+    const responseReleased = new Promise<void>((resolve) => (releaseResponse = resolve))
+    await page.route('**/api/jobs?*', async (route) => {
+      await responseReleased
+      await route.continue()
+    })
+    await page.goto('/search')
+
+    const skeleton = page.getByRole('status').filter({ hasText: 'Buscando empleos...' })
+    await expect(skeleton).toBeVisible()
+    await expect(jobCards(page)).toHaveCount(0)
+
+    releaseResponse()
+
+    await expect(jobCards(page).first()).toBeVisible()
+    await expect(skeleton).toHaveCount(0)
+  })
 })
 
 test.describe('Paginación', () => {

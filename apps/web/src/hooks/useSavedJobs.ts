@@ -37,6 +37,7 @@ export function useSavedJobs() {
       : ''
 
   const { data, error, loading, retry } = useAsync(query, loadSavedJobs)
+  const pageSize = Math.min(RESULTS_PER_PAGE, ids.length - (currentPage - 1) * RESULTS_PER_PAGE)
 
   const jobs = data?.data ?? []
   const total = data?.total ?? 0
@@ -45,6 +46,7 @@ export function useSavedJobs() {
     tab,
     currentPage,
     jobs,
+    pageSize,
     totalPages: Math.ceil(total / RESULTS_PER_PAGE),
     loading,
     isEmpty: ids.length === 0 || (!loading && jobs.length === 0),

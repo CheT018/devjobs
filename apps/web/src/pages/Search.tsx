@@ -1,6 +1,8 @@
 import { JobListings } from '../components/JobListings'
+import { JobListingsSkeleton } from '../components/JobListingsSkeleton'
 import { Pagination } from '../components/Pagination'
 import { SearchFormSection } from '../components/SearchFormSection'
+import { RESULTS_PER_PAGE } from '../constants/filters'
 import { useJobSearch } from '../hooks/useJobSearch'
 import styles from './Search.module.css'
 
@@ -49,7 +51,9 @@ export default function SearchPage() {
             <button onClick={retry}>Reintentar</button>
           </div>
         ) : isFirstLoad ? (
-          <p className={styles.message}>Buscando empleos...</p>
+          <div className={styles.results}>
+            <JobListingsSkeleton count={RESULTS_PER_PAGE} label="Buscando empleos..." />
+          </div>
         ) : (
           <div className={loading ? styles.resultsLoading : styles.results} aria-busy={loading}>
             <JobListings jobs={jobs} />
