@@ -4,6 +4,26 @@ Portal de empleo para desarrolladores. Permite buscar ofertas por texto, filtrar
 
 Es una aplicación full stack en un monorepo: una web en React y una API REST propia con base de datos SQLite.
 
+**[Ver la demo](https://devjobs-lilac.vercel.app)** · [![CI](https://github.com/CheT018/devjobs/actions/workflows/ci.yml/badge.svg)](https://github.com/CheT018/devjobs/actions/workflows/ci.yml)
+
+![Portada de DevJobs](.github/screenshots/home.png)
+
+<p>
+  <img src=".github/screenshots/detail.png" alt="Detalle de una oferta en escritorio" width="68%">
+  <img src=".github/screenshots/mobile.png" alt="Búsqueda en un móvil, con una oferta marcada como favorita" width="24%">
+</p>
+
+## Origen del proyecto
+
+DevJobs empezó como proyecto del bootcamp de midudev en [JsCamp](https://www.jscamp.dev/). La web, la API, la base de datos, los tests, Docker y la integración continua se hicieron siguiendo el curso. Después fui añadiendo:
+
+- API de solo lectura en producción, para proteger la demo pública ([#7](https://github.com/CheT018/devjobs/pull/7)).
+- Sesión, favoritos y candidaturas que se conservan al recargar ([#8](https://github.com/CheT018/devjobs/pull/8)).
+- Diseño adaptado al móvil, con los tests de extremo a extremo también en móvil ([#9](https://github.com/CheT018/devjobs/pull/9)).
+- Textos de la portada ajustados a lo que hace la aplicación ([#10](https://github.com/CheT018/devjobs/pull/10)).
+- Despliegue en Vercel, con la web y la API en el mismo dominio ([#11](https://github.com/CheT018/devjobs/pull/11)).
+- Imágenes base de Docker fijadas por versión y digest.
+
 ## Stack
 
 | Parte | Tecnologías |
@@ -11,7 +31,7 @@ Es una aplicación full stack en un monorepo: una web en React y una API REST pr
 | Web | React 19, TypeScript, Vite, React Router, Zustand, CSS Modules |
 | API | Node.js, Express 5, TypeScript, SQLite (better-sqlite3), Zod |
 | Tests | `node:test` para la API, Playwright para los tests de extremo a extremo |
-| Herramientas | pnpm workspaces, Oxlint, GitHub Actions, Docker |
+| Herramientas | pnpm workspaces, Oxlint, GitHub Actions, Docker, Vercel |
 
 ## Estructura
 
@@ -49,7 +69,7 @@ La aplicación queda en http://localhost:8080 y la API en http://localhost:8080/
 
 ## Despliegue
 
-La demo está en Vercel, en un único proyecto. La web se sirve como estática y la API como una función (`api/index.js`) en el mismo dominio, así que no hace falta configurar CORS. La configuración está en `vercel.json`.
+La [demo](https://devjobs-lilac.vercel.app) está en Vercel, en un único proyecto. La web se sirve como estática y la API como una función (`api/index.js`) en el mismo dominio, así que no hace falta configurar CORS. La configuración está en `vercel.json`.
 
 La API se despliega en modo solo lectura: cada instancia crea la base de datos en memoria y carga las ofertas de ejemplo al arrancar. Solo `ALLOW_WRITES=true` activa las escrituras.
 
