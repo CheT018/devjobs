@@ -6,10 +6,7 @@ interface Settled<T> {
   error: unknown
 }
 
-/**
- * Carga datos asociados a una clave y los vuelve a pedir cuando la clave
- * cambia, cancelando la petición anterior. `load` debe ser una función estable.
- */
+// `load` debe ser una función estable: si cambia en cada render, la petición se repite sin fin
 export function useAsync<T>(
   key: string,
   load: (key: string, signal: AbortSignal) => Promise<T>,

@@ -23,7 +23,6 @@ const server = app.listen(config.port, () => {
   }
 })
 
-// Cierre ordenado: deja de aceptar conexiones y cierra la base de datos.
 function shutdown(): void {
   server.close(() => {
     db.close()

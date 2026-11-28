@@ -155,7 +155,6 @@ test.describe('Detalle y candidatura', () => {
     await searchFromHome(page, 'JavaScript')
     await expect(page).toHaveURL(/\/search\?text=JavaScript/)
 
-    // Sin cuentas de usuario: se puede aplicar directamente
     await expect(jobCards(page).first().getByRole('button', { name: 'Aplicar' })).toBeEnabled()
 
     await openFirstJobDetail(page)

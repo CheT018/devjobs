@@ -11,10 +11,6 @@ interface SearchFormSectionProps {
   onFiltersChange: (filters: SearchFilters) => void
 }
 
-/**
- * Texto del buscador con debounce: el input responde al instante y la búsqueda
- * se lanza cuando el usuario deja de escribir.
- */
 function useDebouncedText(committedText: string, onCommit: (text: string) => void) {
   const [inputText, setInputText] = useState(committedText)
   const [lastCommitted, setLastCommitted] = useState(committedText)

@@ -6,7 +6,6 @@ interface ApplicationsState {
   apply: (jobId: string) => void
 }
 
-// Se guarda en localStorage para que las candidaturas sobrevivan a una recarga
 export const useApplicationsStore = create<ApplicationsState>()(
   persist(
     (set) => ({

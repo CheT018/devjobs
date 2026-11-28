@@ -1,14 +1,12 @@
 version: 2
 
 updates:
-  # Mantiene actualizados los SHA de las actions fijadas en los workflows
   - package-ecosystem: github-actions
     directories:
       - /
       - /.github/actions/*
     schedule:
       interval: weekly
-    # Espera unos días antes de proponer una versión recién publicada
     cooldown:
       default-days: 7
     groups:
@@ -16,7 +14,6 @@ updates:
         patterns:
           - '*'
 
-  # Dependencias de todos los paquetes del monorepo (pnpm)
   - package-ecosystem: npm
     directory: /
     schedule:
@@ -29,7 +26,6 @@ updates:
           - minor
           - patch
 
-  # Imágenes base de los Dockerfiles
   - package-ecosystem: docker
     directories:
       - /apps/api

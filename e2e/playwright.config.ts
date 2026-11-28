@@ -31,8 +31,6 @@ export default defineConfig({
     },
   ],
 
-  // Levanta la API con una base de datos en memoria, recién sembrada, y la web
-  // apuntando a ella.
   webServer: [
     {
       command: 'pnpm --filter @devjobs/api exec tsx src/server.ts',

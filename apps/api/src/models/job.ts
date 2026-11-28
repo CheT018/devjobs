@@ -141,7 +141,6 @@ export class JobModel {
     return this.getById(id)!
   }
 
-  /** Inserta una oferta con un id ya definido. Lo usa también el seed. */
   insert(job: Job): void {
     this.#db.transaction(() => {
       this.#db
