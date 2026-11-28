@@ -15,10 +15,6 @@ export default function HomePage() {
   return (
     <main>
       <title>DevJobs - Empleos para desarrolladores</title>
-      <meta
-        name="description"
-        content="DevJobs es un portal de empleo para desarrolladores. Busca ofertas por tecnología, ubicación, modalidad y nivel de experiencia."
-      />
 
       <section>
         <img src="/background.webp" alt="" width="200" />
