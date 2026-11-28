@@ -10,7 +10,7 @@ function JobCardApplyButton({ jobId }: { jobId: string }) {
 
   return (
     <button
-      className={hasApplied ? 'button-apply-job is-applied' : 'button-apply-job'}
+      className={hasApplied ? `${styles.apply} ${styles.applied}` : styles.apply}
       onClick={apply}
       disabled={hasApplied}
     >
@@ -55,20 +55,20 @@ export function JobCard({ job }: { job: JobSummary }) {
 
   return (
     <article
-      className="job-listing-card"
+      className={styles.card}
       data-modality={job.data.modality}
       data-level={job.data.level}
     >
       <div>
-        <h3>
+        <h3 className={styles.heading}>
           <Link className={styles.title} to={detailPath}>
             {job.title}
           </Link>
         </h3>
-        <small>
+        <small className={styles.meta}>
           {job.company} | {job.location}
         </small>
-        <p>{job.description}</p>
+        <p className={styles.description}>{job.description}</p>
         <JobTags data={job.data} />
       </div>
 

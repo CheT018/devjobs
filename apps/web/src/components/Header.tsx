@@ -20,16 +20,16 @@ export function Header() {
         DevJobs
       </Link>
 
-      <nav aria-label="Principal">
+      <nav className={styles.nav} aria-label="Principal">
         <NavLink
           to="/search"
-          className={({ isActive }) => (isActive ? styles.navLinkActive : undefined)}
+          className={({ isActive }) => (isActive ? styles.active : undefined)}
         >
           Empleos
         </NavLink>
         <NavLink
           to="/saved"
-          className={({ isActive }) => (isActive ? styles.navLinkActive : undefined)}
+          className={({ isActive }) => (isActive ? styles.active : undefined)}
         >
           Guardados
         </NavLink>

@@ -7,7 +7,7 @@ export default function NotFoundPage() {
       <title>Página no encontrada - DevJobs</title>
 
       <h1>404 - Página no encontrada</h1>
-      <p>Lo sentimos, la página que buscas no existe.</p>
+      <p className={styles.lead}>Lo sentimos, la página que buscas no existe.</p>
       <Link to="/" className={styles.link}>
         Volver al inicio
       </Link>

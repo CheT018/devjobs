@@ -4,7 +4,7 @@ import styles from './JobListings.module.css'
 
 export function JobListings({ jobs }: { jobs: JobSummary[] }) {
   return (
-    <div className="jobs-listings">
+    <div className={styles.listings}>
       {jobs.length === 0 && (
         <p className={styles.empty}>
           No se han encontrado empleos que coincidan con los criterios de búsqueda.
