@@ -1,0 +1,16 @@
+.input {
+  flex: 1;
+  /* Sin esto, el ancho mínimo del input empuja el botón fuera en pantallas estrechas */
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  padding: 0.75rem 0.5rem;
+  font-size: 1rem;
+  font-family: inherit;
+
+  &::placeholder {
+    color: #64748b;
+  }
+}

@@ -1,5 +1,14 @@
+.listings {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 1rem;
+}
+
 .empty {
-  text-align: center;
+  max-width: 42rem;
+  margin: 0 auto;
   padding: 1rem;
+  font-size: 1.125rem;
+  color: var(--text-muted);
+  text-align: center;
   text-wrap: balance;
 }

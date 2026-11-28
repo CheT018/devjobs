@@ -40,7 +40,7 @@ export default function SearchPage() {
         onFiltersChange={setFilters}
       />
 
-      <section>
+      <section className={styles.section}>
         <h2 className={styles.heading}>Resultados de búsqueda</h2>
 
         {failed ? (

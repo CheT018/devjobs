@@ -6,6 +6,8 @@ import {
   TECHNOLOGY_OPTIONS,
 } from '../constants/filters'
 import type { SearchFilters } from '../hooks/useJobSearch'
+import searchInput from '../styles/searchInput.module.css'
+import styles from './SearchFormSection.module.css'
 
 const DEBOUNCE_MS = 500
 
@@ -68,12 +70,14 @@ export function SearchFormSection({
     }
 
   return (
-    <section className="jobs-search">
-      <h1>Encuentra tu próximo trabajo</h1>
-      <p>Explora ofertas del sector tecnológico y filtra por lo que buscas.</p>
+    <section className={styles.section}>
+      <h1 className={styles.title}>Encuentra tu próximo trabajo</h1>
+      <p className={styles.lead}>
+        Explora ofertas del sector tecnológico y filtra por lo que buscas.
+      </p>
 
-      <form role="search" onSubmit={handleSubmit}>
-        <div className="search-bar">
+      <form className={styles.form} role="search" onSubmit={handleSubmit}>
+        <div className={styles.searchBar}>
           <svg
             aria-hidden="true"
             width="24"
@@ -90,6 +94,7 @@ export function SearchFormSection({
           </svg>
 
           <input
+            className={searchInput.input}
             type="search"
             name="text"
             aria-label="Buscar empleos"
@@ -103,8 +108,9 @@ export function SearchFormSection({
           </button>
         </div>
 
-        <div className="search-filters">
+        <div className={styles.filters}>
           <select
+            className={styles.select}
             name="technology"
             aria-label="Tecnología"
             value={filters.technology}
@@ -119,6 +125,7 @@ export function SearchFormSection({
           </select>
 
           <select
+            className={styles.select}
             name="location"
             aria-label="Ubicación"
             value={filters.location}
@@ -133,6 +140,7 @@ export function SearchFormSection({
           </select>
 
           <select
+            className={styles.select}
             name="modality"
             aria-label="Modalidad"
             value={filters.modality}
@@ -147,6 +155,7 @@ export function SearchFormSection({
           </select>
 
           <select
+            className={styles.select}
             name="level"
             aria-label="Nivel de experiencia"
             value={filters.level}

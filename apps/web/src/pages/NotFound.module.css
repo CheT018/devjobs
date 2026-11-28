@@ -2,6 +2,11 @@
   padding: 2rem 1rem;
 }
 
+.lead {
+  text-wrap: balance;
+  margin-bottom: 2rem;
+}
+
 .link {
   color: var(--primary-light);
   text-decoration: none;

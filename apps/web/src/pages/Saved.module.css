@@ -10,8 +10,9 @@
 }
 
 .tabs {
+  display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 0;
   margin-block: 1.5rem;
   border-bottom: 1px solid var(--border);
 
@@ -19,6 +20,15 @@
     padding: 0.5rem 1rem;
     margin-bottom: -1px;
     border-bottom: 2px solid transparent;
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &:focus {
+      color: var(--primary);
+      outline: none;
+    }
 
     &:hover,
     &:focus-visible {
