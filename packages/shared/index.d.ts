@@ -1,5 +1,3 @@
-// Contrato de la API de DevJobs. Solo tipos: no genera código en tiempo de ejecución.
-
 export type JobModality = 'remote' | 'onsite' | 'hybrid'
 export type JobLevel = 'junior' | 'mid' | 'senior'
 
@@ -16,7 +14,6 @@ export interface JobContent {
   about: string
 }
 
-/** Oferta tal como aparece en los listados, sin el contenido detallado. */
 export interface JobSummary {
   id: string
   title: string
@@ -26,7 +23,6 @@ export interface JobSummary {
   data: JobData
 }
 
-/** Oferta completa, tal como la devuelve el detalle. */
 export interface Job extends JobSummary {
   content?: JobContent
 }

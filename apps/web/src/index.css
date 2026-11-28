@@ -55,7 +55,6 @@ select {
   }
 }
 
-/* Títulos principales */
 h1 {
   font-size: 1.5rem;
   line-height: 1.2;
@@ -70,7 +69,6 @@ h1 + p {
   margin-bottom: 2rem;
 }
 
-/* Header */
 header {
   border-bottom: 1px solid var(--border);
   background: var(--background);
@@ -87,7 +85,6 @@ header {
   }
 }
 
-/* Navegación */
 nav {
   align-items: center;
   gap: 1rem;
@@ -132,7 +129,6 @@ main > section:nth-child(1) {
   }
 }
 
-/* Formulario de búsqueda */
 form {
   max-width: 42rem;
   width: 100%;
@@ -247,7 +243,6 @@ main > section:nth-child(2) footer {
   gap: 16px;
 }
 
-/* Footer */
 footer {
   background-color: var(--background);
   border-top: 1px solid var(--border);
@@ -286,7 +281,6 @@ article {
   }
 }
 
-/* Buscador de empleos */
 .jobs-search {
   margin: 0;
   padding: 0;
@@ -332,7 +326,6 @@ article {
   }
 }
 
-/* Listado de empleos */
 .jobs-listings {
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 1rem;

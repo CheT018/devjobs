@@ -6,7 +6,6 @@ interface FavoritesState {
   toggleFavorite: (jobId: string) => void
 }
 
-// Se guarda en localStorage para que los favoritos sobrevivan a una recarga
 export const useFavoritesStore = create<FavoritesState>()(
   persist(
     (set) => ({

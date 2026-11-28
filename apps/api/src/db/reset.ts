@@ -1,4 +1,3 @@
-// Script de `pnpm seed`: borra las ofertas y vuelve a cargar los datos de ejemplo.
 import { config } from '../config.js'
 import { openDatabase } from './database.js'
 import { seedDatabase } from './seed.js'

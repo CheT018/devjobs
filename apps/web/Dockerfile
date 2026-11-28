@@ -19,7 +19,6 @@ COPY packages/shared packages/shared
 COPY apps/web apps/web
 RUN pnpm --filter @devjobs/web build
 
-# nginx sin privilegios: el proceso no corre como root y escucha en el 8080
 FROM nginx/nginx-unprivileged:1.31.9-alpine@sha256:60214a103e6f38e953ff957f34b1f2e97a9db801ab2df3821da955d0fe6cadd6 AS runner
 ENV API_URL=http://api:3000
 

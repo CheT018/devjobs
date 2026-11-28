@@ -7,7 +7,6 @@
   }
 }
 
-/* En móvil, en fila bajo el texto; desde 640 px, en columna a la derecha */
 .actions {
   display: flex;
   align-items: center;

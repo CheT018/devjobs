@@ -14,7 +14,7 @@ function toLevel(value: string | null): JobLevel | '' {
   return LEVEL_OPTIONS.find((option) => option.value === value)?.value ?? ''
 }
 
-/** Estado de la búsqueda de empleos. La URL es la única fuente de verdad. */
+// La URL es la única fuente de verdad de la búsqueda
 export function useJobSearch() {
   const [searchParams, setSearchParams] = useSearchParams()
 

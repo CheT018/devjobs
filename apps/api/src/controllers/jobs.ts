@@ -14,7 +14,6 @@ export class JobController {
     this.#model = model
   }
 
-  // GET /api/jobs
   getAll = (req: Request, res: Response<Paginated<JobSummary>>): void => {
     const { limit, offset, ...filters } = listJobsQuerySchema.parse(req.query)
     const { jobs, total } = this.#model.getAll(filters, { limit, offset })
@@ -22,7 +21,6 @@ export class JobController {
     res.json({ data: jobs, total, limit, offset })
   }
 
-  // GET /api/jobs/:id
   getById = (req: Request<IdParams>, res: Response<Job | ApiErrorBody>): void => {
     const job = this.#model.getById(req.params.id)
 
@@ -34,13 +32,12 @@ export class JobController {
     res.json(job)
   }
 
-  // POST /api/jobs (el body llega validado por el middleware)
+  // El body llega validado por el middleware
   create = (req: Request, res: Response<Job>): void => {
     const job = this.#model.create(req.body)
     res.status(201).json(job)
   }
 
-  // PATCH /api/jobs/:id
   update = (req: Request<IdParams>, res: Response<Job | ApiErrorBody>): void => {
     const job = this.#model.update(req.params.id, req.body)
 
@@ -52,7 +49,6 @@ export class JobController {
     res.json(job)
   }
 
-  // DELETE /api/jobs/:id
   delete = (req: Request<IdParams>, res: Response<ApiErrorBody>): void => {
     const deleted = this.#model.delete(req.params.id)
 

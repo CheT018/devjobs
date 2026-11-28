@@ -5,7 +5,6 @@ import seedData from './seed-data.json' with { type: 'json' }
 
 const seedJobs = seedData as Job[]
 
-/** Inserta las ofertas de ejemplo. Devuelve cuántas se han cargado. */
 export function seedDatabase(db: Db): number {
   const model = new JobModel(db)
 
@@ -18,7 +17,6 @@ export function seedDatabase(db: Db): number {
   return seedJobs.length
 }
 
-/** Carga las ofertas de ejemplo solo si la base de datos está vacía. */
 export function seedIfEmpty(db: Db): number {
   return new JobModel(db).count() === 0 ? seedDatabase(db) : 0
 }

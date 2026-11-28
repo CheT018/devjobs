@@ -15,7 +15,6 @@
   transition: opacity 0.25s ease-in-out;
 }
 
-/* Mientras llega la página nueva se atenúan los resultados anteriores */
 .resultsLoading {
   composes: results;
   opacity: 0.4;

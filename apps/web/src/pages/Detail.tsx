@@ -8,7 +8,6 @@ import { useJob } from '../hooks/useJob'
 import styles from './Detail.module.css'
 
 function JobSection({ title, content }: { title: string; content?: string }) {
-  // El contenido llega en Markdown: se convierte a HTML y se sanea antes de pintarlo
   const html = useMemo(() => DOMPurify.sanitize(snarkdown(content ?? '')), [content])
 
   if (!content) return null

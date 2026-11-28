@@ -9,7 +9,6 @@ import { createJobsRouter } from './routes/jobs.js'
 interface AppOptions {
   db: Db
   corsOrigins?: string[]
-  /** Si es false, las rutas de escritura responden 403. */
   allowWrites?: boolean
 }
 

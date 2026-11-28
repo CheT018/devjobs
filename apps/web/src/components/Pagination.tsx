@@ -16,7 +16,6 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
   const isFirstPage = currentPage <= 1
   const isLastPage = currentPage >= totalPages
 
-  // Conserva los filtros de la URL y cambia solo la página
   const buildPageUrl = (page: number) => {
     const params = new URLSearchParams(searchParams)
 

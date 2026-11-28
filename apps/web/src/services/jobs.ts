@@ -23,7 +23,6 @@ async function request<T>(path: string, signal?: AbortSignal): Promise<T> {
   return (await response.json()) as T
 }
 
-/** Busca ofertas. `query` son los parámetros de la API ya serializados. */
 export function searchJobs(query: string, signal?: AbortSignal): Promise<Paginated<JobSummary>> {
   return request(query ? `/jobs?${query}` : '/jobs', signal)
 }
