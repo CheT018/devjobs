@@ -1,10 +1,14 @@
-import type { JobLevel } from '@devjobs/shared'
+import type { JobLevel, JobModality } from '@devjobs/shared'
 
 export const RESULTS_PER_PAGE = 4
 
-interface Option<T extends string = string> {
+export interface Option<T extends string = string> {
   value: T
   label: string
+}
+
+export function getLabel(options: Option[], value: string): string {
+  return options.find((option) => option.value === value)?.label ?? value
 }
 
 export const TECHNOLOGY_OPTIONS: Option[] = [
@@ -34,6 +38,12 @@ export const LOCATION_OPTIONS: string[] = [
   'Monterrey',
   'Santiago de Chile',
   'Valencia',
+]
+
+export const MODALITY_OPTIONS: Option<JobModality>[] = [
+  { value: 'remote', label: 'Remoto' },
+  { value: 'onsite', label: 'Presencial' },
+  { value: 'hybrid', label: 'Híbrido' },
 ]
 
 export const LEVEL_OPTIONS: Option<JobLevel>[] = [

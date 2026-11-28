@@ -1,6 +1,6 @@
-import type { JobLevel } from '@devjobs/shared'
+import type { JobLevel, JobModality } from '@devjobs/shared'
 import { useSearchParams } from 'react-router'
-import { LEVEL_OPTIONS, RESULTS_PER_PAGE } from '../constants/filters'
+import { LEVEL_OPTIONS, MODALITY_OPTIONS, RESULTS_PER_PAGE, type Option } from '../constants/filters'
 import { searchJobs } from '../services/jobs'
 import { getCurrentPage } from '../utils/searchParams'
 import { useAsync } from './useAsync'
@@ -8,11 +8,12 @@ import { useAsync } from './useAsync'
 export interface SearchFilters {
   technology: string
   location: string
+  modality: JobModality | ''
   level: JobLevel | ''
 }
 
-function toLevel(value: string | null): JobLevel | '' {
-  return LEVEL_OPTIONS.find((option) => option.value === value)?.value ?? ''
+function toOptionValue<T extends string>(options: Option<T>[], value: string | null): T | '' {
+  return options.find((option) => option.value === value)?.value ?? ''
 }
 
 // La URL es la única fuente de verdad de la búsqueda
@@ -23,7 +24,8 @@ export function useJobSearch() {
   const filters: SearchFilters = {
     technology: searchParams.get('technology') ?? '',
     location: searchParams.get('location') ?? '',
-    level: toLevel(searchParams.get('level')),
+    modality: toOptionValue(MODALITY_OPTIONS, searchParams.get('modality')),
+    level: toOptionValue(LEVEL_OPTIONS, searchParams.get('level')),
   }
   const currentPage = getCurrentPage(searchParams)
 
