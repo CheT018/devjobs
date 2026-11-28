@@ -48,7 +48,16 @@ export const updateJobSchema = createJobSchema.partial().extend({
 
 const optionalFilter = z.string().trim().max(100).optional()
 
+const MAX_IDS = 100
+
+const idsFilter = z
+  .string()
+  .transform((value) => [...new Set(value.split(',').map((id) => id.trim()).filter(Boolean))])
+  .pipe(z.array(z.string().max(100)).max(MAX_IDS, `ids must contain at most ${MAX_IDS} ids`))
+  .optional()
+
 export const listJobsQuerySchema = z.object({
+  ids: idsFilter,
   text: optionalFilter,
   technology: optionalFilter,
   location: optionalFilter,

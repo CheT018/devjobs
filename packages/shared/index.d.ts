@@ -39,6 +39,7 @@ export interface UpdateJobInput {
 }
 
 export interface JobFilters {
+  ids?: string[]
   text?: string
   technology?: string
   location?: string

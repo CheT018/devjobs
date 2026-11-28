@@ -114,6 +114,7 @@ En producción (`NODE_ENV=production`, como en la imagen de Docker) la API funci
 
 | Parámetro | Descripción |
 | --- | --- |
+| `ids` | Ids de ofertas separados por comas, hasta 100. Los que no existen se ignoran |
 | `text` | Busca en el título, la empresa, la descripción y las tecnologías |
 | `technology` | Tecnología exacta, por ejemplo `react` |
 | `location` | Ubicación exacta, por ejemplo `Madrid` o `Remoto` |
