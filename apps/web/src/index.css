@@ -5,20 +5,93 @@
 }
 
 :root {
-  --primary: #3b4550;
-  --primary-hover: #0d5ba8;
-  --primary-light: #09f;
+  color-scheme: dark;
+
   --background: #06182a;
+  --header-bg: var(--background);
+  --surface: transparent;
+  --card-bg: #1e293b;
+  --input-bg: #1e293b;
+  --border: rgba(255, 255, 255, 0.1);
+  --divider: rgba(255, 255, 255, 0.3);
+  --shadow: rgba(0, 0, 0, 0.3);
+  --card-shadow: rgba(0, 0, 0, 0.5);
+
   --text-primary: #ffffff;
   --text-secondary: #cbd5e1;
   --text-muted: #94a3b8;
-  --border: rgba(255, 255, 255, 0.1);
-  --card-bg: #1e293b;
-  --shadow: rgba(0, 0, 0, 0.3);
-  --input-bg: #1e293b;
+
+  --accent: #09f;
+  --accent-hover: #0086e6cc;
+  --accent-soft: rgba(0, 153, 255, 0.15);
+  --accent-muted: rgba(0, 153, 255, 0.3);
+  --on-accent: #fff;
   --nav-link: #288ed1;
+
+  --button-bg: #3b4550;
+  --button-bg-hover: #0d5ba8;
+  --button-text: #fff;
+  --focus-ring: #fff;
+  --disabled: #666;
+  --success: #4caf50;
+  --favorite: #f43f5e;
+
+  --select-bg: #242d3a;
+  --select-text: #ddd;
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+
+  --pagination-hover-bg: #fff;
+  --pagination-hover-text: #3b4550;
+  --code-bg: rgba(255, 255, 255, 0.1);
+  --spinner-track: #e2e8f0;
   --skeleton: rgba(255, 255, 255, 0.06);
   --skeleton-highlight: rgba(255, 255, 255, 0.12);
+  --hero-image-opacity: 1;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --background: #f1f5f9;
+  --header-bg: #ffffff;
+  --surface: #ffffff;
+  --card-bg: #ffffff;
+  --input-bg: #ffffff;
+  --border: rgba(15, 23, 42, 0.1);
+  --divider: rgba(15, 23, 42, 0.12);
+  --shadow: rgba(15, 23, 42, 0.12);
+  --card-shadow: rgba(15, 23, 42, 0.12);
+
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #58677d;
+
+  --accent: #0072c6;
+  --accent-hover: #005fa3;
+  --accent-soft: rgba(0, 114, 198, 0.1);
+  --accent-muted: rgba(0, 114, 198, 0.12);
+  --on-accent: #fff;
+  --nav-link: #0072c6;
+
+  --button-bg: #e2e8f0;
+  --button-bg-hover: #cbd5e1;
+  --button-text: #0f172a;
+  --focus-ring: #0f172a;
+  --disabled: #94a3b8;
+  --success: #2e7d32;
+  --favorite: #e11d48;
+
+  --select-bg: #ffffff;
+  --select-text: #334155;
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23334155' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+
+  --pagination-hover-bg: #e2e8f0;
+  --pagination-hover-text: #0f172a;
+  --code-bg: rgba(15, 23, 42, 0.06);
+  --spinner-track: #cbd5e1;
+  --skeleton: rgba(15, 23, 42, 0.06);
+  --skeleton-highlight: rgba(15, 23, 42, 0.11);
+  --hero-image-opacity: 0.35;
 }
 
 body {
@@ -43,8 +116,8 @@ h1 {
 button {
   padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;
-  background-color: var(--primary);
-  color: white;
+  background-color: var(--button-bg);
+  color: var(--button-text);
   font-weight: 400;
   border: none;
   cursor: pointer;
@@ -55,8 +128,8 @@ button {
 
   &:hover,
   &:focus {
-    background-color: var(--primary-hover);
-    outline: 2px solid white;
+    background-color: var(--button-bg-hover);
+    outline: 2px solid var(--focus-ring);
     outline-offset: 2px;
   }
 

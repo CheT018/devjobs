@@ -364,6 +364,32 @@ test.describe('Diseño adaptable', () => {
   })
 })
 
+test.describe('Tema', () => {
+  test('sigue el tema del sistema', async ({ page }) => {
+    await page.emulateMedia({ colorScheme: 'light' })
+    await page.goto('/')
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'light')
+
+    await page.emulateMedia({ colorScheme: 'dark' })
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
+  })
+
+  test('recuerda el tema elegido aunque el sistema use otro', async ({ page }) => {
+    await page.emulateMedia({ colorScheme: 'dark' })
+    await page.goto('/')
+    await page.getByRole('button', { name: 'Activar tema claro' }).click()
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'light')
+
+    await page.reload()
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'light')
+    await expect(page.getByRole('button', { name: 'Activar tema oscuro' })).toBeVisible()
+
+    await page.emulateMedia({ colorScheme: 'light' })
+    await page.emulateMedia({ colorScheme: 'dark' })
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'light')
+  })
+})
+
 test.describe('Navegación', () => {
   test('muestra la página 404 en rutas desconocidas', async ({ page }) => {
     await page.goto('/ruta-que-no-existe')

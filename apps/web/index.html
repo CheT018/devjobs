@@ -11,6 +11,16 @@
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+    <!-- Antes de pintar, para no mostrar un destello del tema equivocado. Ver useTheme.ts -->
+    <script>
+      try {
+        const stored = localStorage.getItem('devjobs-theme')
+        const prefersLight = matchMedia('(prefers-color-scheme: light)').matches
+        document.documentElement.dataset.theme =
+          stored === 'light' || stored === 'dark' ? stored : prefersLight ? 'light' : 'dark'
+      } catch {}
+    </script>
+
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="DevJobs" />
     <meta property="og:locale" content="es_ES" />
