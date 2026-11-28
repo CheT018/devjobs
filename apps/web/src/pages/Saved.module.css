@@ -26,7 +26,7 @@
     transition: color 0.2s;
 
     &:focus {
-      color: var(--primary);
+      color: var(--text-primary);
       outline: none;
     }
 
@@ -37,7 +37,7 @@
 
     &[aria-current='page'] {
       color: var(--text-primary);
-      border-bottom-color: var(--primary-light);
+      border-bottom-color: var(--accent);
     }
   }
 }
@@ -53,7 +53,7 @@
 }
 
 .link {
-  color: var(--primary-light);
+  color: var(--accent);
   text-decoration: none;
 
   &:hover {

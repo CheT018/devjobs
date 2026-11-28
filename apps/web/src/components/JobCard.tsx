@@ -38,8 +38,6 @@ function JobCardFavoriteButton({ jobId }: { jobId: string }) {
         width="20"
         height="20"
         viewBox="0 0 24 24"
-        fill={isFavorite ? '#f43f5e' : 'none'}
-        stroke="white"
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"

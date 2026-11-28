@@ -15,7 +15,7 @@
 
   .highlight {
     border-color: transparent;
-    background-color: rgba(0, 153, 255, 0.15);
+    background-color: var(--accent-soft);
     color: var(--text-primary);
   }
 }

@@ -31,7 +31,7 @@
 }
 
 .errorButton {
-  color: #09f;
+  color: var(--accent);
   font-size: 1rem;
   text-decoration: none;
 }
@@ -58,7 +58,7 @@
 }
 
 .breadcrumbButton:focus {
-  color: var(--primary);
+  color: var(--text-primary);
   outline: none;
 }
 
@@ -108,8 +108,8 @@
 
 .applyButton {
   width: 100%;
-  background: #09f;
-  color: white;
+  background: var(--accent);
+  color: var(--on-accent);
   border: none;
   font-weight: 600;
   padding: 0.75rem 2rem;
@@ -120,17 +120,17 @@
 }
 
 .applyButton:hover {
-  background-color: #0086e6cc;
+  background-color: var(--accent-hover);
 }
 
 .applyButton:disabled {
-  background-color: #666;
+  background-color: var(--disabled);
   cursor: not-allowed;
   opacity: 0.6;
 }
 
 .applyButton:disabled:hover {
-  background-color: #666;
+  background-color: var(--disabled);
 }
 
 @media (min-width: 640px) {
@@ -165,7 +165,7 @@
 
   strong {
     font-weight: 600;
-    color: #fff;
+    color: var(--text-primary);
   }
 
   em {
@@ -173,7 +173,7 @@
   }
 
   code {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--code-bg);
     padding: 0.2rem 0.4rem;
     border-radius: 0.25rem;
     font-size: 0.875em;
