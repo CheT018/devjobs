@@ -6,13 +6,30 @@ interface PaginationProps {
   totalPages: number
 }
 
+const MAX_ITEMS = 7
+
+function range(from: number, to: number): number[] {
+  return Array.from({ length: to - from + 1 }, (_, index) => from + index)
+}
+
+// Siempre devuelve MAX_ITEMS elementos (o menos si no hay tantas páginas), para que la
+// barra no cambie de ancho al moverse entre páginas. null es un hueco con puntos suspensivos.
+export function getPageItems(currentPage: number, totalPages: number): (number | null)[] {
+  if (totalPages <= MAX_ITEMS) return range(1, totalPages)
+
+  if (currentPage <= 4) return [...range(1, 5), null, totalPages]
+  if (currentPage >= totalPages - 3) return [1, null, ...range(totalPages - 4, totalPages)]
+
+  return [1, null, currentPage - 1, currentPage, currentPage + 1, null, totalPages]
+}
+
 export function Pagination({ currentPage, totalPages }: PaginationProps) {
   const { pathname } = useLocation()
   const [searchParams] = useSearchParams()
 
   if (totalPages <= 1) return null
 
-  const pages = Array.from({ length: totalPages }, (_, index) => index + 1)
+  const items = getPageItems(currentPage, totalPages)
   const isFirstPage = currentPage <= 1
   const isLastPage = currentPage >= totalPages
 
@@ -50,16 +67,22 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
         </svg>
       </Link>
 
-      {pages.map((page) => (
-        <Link
-          key={page}
-          to={buildPageUrl(page)}
-          className={page === currentPage ? styles.isActive : undefined}
-          aria-current={page === currentPage ? 'page' : undefined}
-        >
-          {page}
-        </Link>
-      ))}
+      {items.map((page, index) =>
+        page === null ? (
+          <span key={`ellipsis-${index}`} className={styles.ellipsis} aria-hidden="true">
+            …
+          </span>
+        ) : (
+          <Link
+            key={page}
+            to={buildPageUrl(page)}
+            className={page === currentPage ? styles.isActive : undefined}
+            aria-current={page === currentPage ? 'page' : undefined}
+          >
+            {page}
+          </Link>
+        ),
+      )}
 
       <Link
         to={buildPageUrl(currentPage + 1)}

@@ -128,8 +128,8 @@ test.describe('Búsqueda y filtros', () => {
 test.describe('Paginación', () => {
   test('cambia de página conservando la búsqueda', async ({ page }) => {
     await page.goto('/search')
-    await page.getByRole('searchbox').fill('equipo')
-    await expect(page).toHaveURL(/text=equipo/)
+    await page.getByRole('combobox', { name: 'Modalidad' }).selectOption({ label: 'Presencial' })
+    await expect(page).toHaveURL(/modality=onsite/)
     await expect(page).toHaveTitle(/Página 1 - DevJobs/)
 
     const pagination = page.getByRole('navigation', { name: 'Paginación' })
@@ -139,7 +139,7 @@ test.describe('Paginación', () => {
 
     await pagination.getByRole('link', { name: 'Siguiente' }).click()
 
-    await expect(page).toHaveURL(/text=equipo/)
+    await expect(page).toHaveURL(/modality=onsite/)
     await expect(page).toHaveURL(/page=2/)
     await expect(page).toHaveTitle(/Página 2 - DevJobs/)
     await expect(pagination.getByRole('link', { name: '2', exact: true })).toHaveAttribute(
@@ -149,6 +149,19 @@ test.describe('Paginación', () => {
     await expect(jobCards(page).first().getByRole('heading', { level: 3 })).not.toHaveText(
       firstTitle,
     )
+  })
+
+  test('acorta la lista de páginas con puntos suspensivos', async ({ page }) => {
+    await page.route('**/api/jobs?*', async (route) => {
+      const response = await route.fetch()
+      await route.fulfill({ response, json: { ...(await response.json()), total: 200 } })
+    })
+    await page.goto('/search?page=10')
+
+    const pagination = page.getByRole('navigation', { name: 'Paginación' })
+    await expect(pagination.getByRole('link')).toHaveText(['', '1', '9', '10', '11', '20', ''])
+    await expect(pagination.getByText('…')).toHaveCount(2)
+    await expectNoHorizontalScroll(page)
   })
 })
 
@@ -283,7 +296,7 @@ test.describe('Guardados', () => {
 
   test('pagina los favoritos y vuelve atrás al vaciar la última página', async ({ page }) => {
     await page.goto('/search')
-    await expect(jobCards(page)).toHaveCount(4)
+    await expect(jobCards(page)).toHaveCount(10)
     for (const card of await jobCards(page).all()) {
       await card.getByRole('button', { name: 'Agregar a favoritos' }).click()
     }
@@ -295,11 +308,14 @@ test.describe('Guardados', () => {
     ).toBeVisible()
 
     await page.goto('/saved?page=2')
-    await expect(page.getByRole('link', { name: '2' })).toHaveAttribute('aria-current', 'page')
+    await expect(page.getByRole('link', { name: '2', exact: true })).toHaveAttribute(
+      'aria-current',
+      'page',
+    )
     await expect(jobCards(page)).toHaveCount(1)
 
     await jobCards(page).first().getByRole('button', { name: 'Quitar de favoritos' }).click()
-    await expect(jobCards(page)).toHaveCount(4)
+    await expect(jobCards(page)).toHaveCount(10)
     await expect(page.getByRole('navigation', { name: 'Paginación' })).toHaveCount(0)
   })
 })
