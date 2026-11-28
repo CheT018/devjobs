@@ -13,7 +13,7 @@
     "build": "pnpm -r build",
     "lint": "oxlint --deny-warnings",
     "typecheck": "pnpm -r typecheck",
-    "test": "pnpm --filter @devjobs/api test",
+    "test": "pnpm --filter @devjobs/api --filter @devjobs/web test",
     "test:e2e": "pnpm --filter @devjobs/e2e test",
     "seed": "pnpm --filter @devjobs/api seed"
   },

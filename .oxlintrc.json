@@ -9,7 +9,10 @@
     "react/rules-of-hooks": "error",
     "react/exhaustive-deps": "error",
     "react/react-in-jsx-scope": "off",
-    "import/no-unassigned-import": ["error", { "allow": ["**/*.css"] }],
+    "import/no-unassigned-import": [
+      "error",
+      { "allow": ["**/*.css", "@testing-library/jest-dom/vitest"] }
+    ],
     "jsx-a11y/prefer-tag-over-role": "off"
   },
   "ignorePatterns": ["**/dist/**", "**/playwright-report/**", "**/test-results/**"]
