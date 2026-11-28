@@ -17,6 +17,8 @@
   --shadow: rgba(0, 0, 0, 0.3);
   --input-bg: #1e293b;
   --nav-link: #288ed1;
+  --skeleton: rgba(255, 255, 255, 0.06);
+  --skeleton-highlight: rgba(255, 255, 255, 0.12);
 }
 
 body {

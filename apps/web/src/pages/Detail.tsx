@@ -4,6 +4,7 @@ import { useMemo } from 'react'
 import { Link, useParams } from 'react-router'
 import snarkdown from 'snarkdown'
 import { JobTags } from '../components/JobTags'
+import skeleton from '../components/Skeleton.module.css'
 import { useApplication } from '../hooks/useApplication'
 import { useJob } from '../hooks/useJob'
 import styles from './Detail.module.css'
@@ -66,6 +67,45 @@ function JobDetail({ job }: { job: Job }) {
   )
 }
 
+const SKELETON_SECTIONS = [4, 5]
+
+function JobDetailSkeleton() {
+  return (
+    <div role="status">
+      <span className={skeleton.visuallyHidden}>Cargando la oferta...</span>
+
+      <div aria-hidden="true">
+        <div className={styles.container}>
+          <span className={styles.skeletonBreadcrumb} />
+        </div>
+
+        <div className={styles.header}>
+          <div className={styles.skeletonHeading}>
+            <span className={styles.skeletonTitle} />
+            <span className={styles.skeletonTitle} />
+            <span className={styles.skeletonMeta} />
+            <span className={styles.skeletonTags}>
+              <span className={skeleton.pill} />
+              <span className={skeleton.pill} />
+              <span className={skeleton.pill} />
+            </span>
+          </div>
+          <span className={styles.skeletonButton} />
+        </div>
+
+        {SKELETON_SECTIONS.map((lines, index) => (
+          <div key={index} className={styles.section}>
+            <span className={styles.skeletonSectionTitle} />
+            {Array.from({ length: lines }, (_, line) => (
+              <span key={line} className={styles.skeletonLine} />
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export default function DetailPage() {
   const { id = '' } = useParams()
   const { job, loading, notFound, failed, retry } = useJob(id)
@@ -74,9 +114,7 @@ export default function DetailPage() {
     return (
       <main className={styles.page}>
         <title>Cargando... - DevJobs</title>
-        <div className={styles.loading}>
-          <p className={styles.loadingText}>Cargando...</p>
-        </div>
+        <JobDetailSkeleton />
       </main>
     )
   }

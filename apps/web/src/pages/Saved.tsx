@@ -1,5 +1,6 @@
 import { Link } from 'react-router'
 import { JobListings } from '../components/JobListings'
+import { JobListingsSkeleton } from '../components/JobListingsSkeleton'
 import { Pagination } from '../components/Pagination'
 import { useSavedJobs, type SavedTab } from '../hooks/useSavedJobs'
 import styles from './Saved.module.css'
@@ -18,7 +19,8 @@ const TABS: { value: SavedTab; label: string; empty: string }[] = [
 ]
 
 export default function SavedPage() {
-  const { tab, currentPage, jobs, totalPages, loading, isEmpty, failed, retry } = useSavedJobs()
+  const { tab, currentPage, jobs, pageSize, totalPages, loading, isEmpty, failed, retry } =
+    useSavedJobs()
   const activeTab = TABS.find(({ value }) => value === tab)!
 
   return (
@@ -52,7 +54,7 @@ export default function SavedPage() {
           </Link>
         </div>
       ) : jobs.length === 0 ? (
-        <p className={styles.message}>Cargando...</p>
+        <JobListingsSkeleton count={pageSize} label="Cargando ofertas guardadas..." />
       ) : (
         <>
           <div className={loading ? styles.resultsLoading : styles.results} aria-busy={loading}>

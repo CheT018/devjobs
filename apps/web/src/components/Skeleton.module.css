@@ -1,0 +1,135 @@
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.block {
+  display: block;
+  height: 1rem;
+  border-radius: 0.375rem;
+  background: linear-gradient(
+    90deg,
+    var(--skeleton) 40%,
+    var(--skeleton-highlight) 50%,
+    var(--skeleton) 60%
+  );
+  background-size: 300% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+.pill {
+  composes: block;
+  width: 4rem;
+  height: 1.5rem;
+  border-radius: 999px;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 100% 0;
+  }
+
+  to {
+    background-position: 0 0;
+  }
+}
+
+/* Tarjeta de oferta: misma caja que JobCard, con anchos que varían entre tarjetas */
+.cardContent {
+  flex: 1;
+}
+
+.cardTitle {
+  composes: block;
+  width: 45%;
+  height: 1.25rem;
+  margin-top: 0.25rem;
+}
+
+.cardMeta {
+  composes: block;
+  width: 25%;
+  height: 0.875rem;
+  margin-top: 0.75rem;
+}
+
+.cardText {
+  composes: block;
+  margin-top: 0.9rem;
+}
+
+/* En móvil la descripción ocupa más líneas */
+.cardTextMobile {
+  composes: block;
+  margin-top: 0.5rem;
+
+  @media (min-width: 640px) {
+    display: none;
+  }
+}
+
+.cardTextShort {
+  composes: block;
+  width: 70%;
+  margin-top: 0.5rem;
+}
+
+.cardTags {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+
+.cardLink {
+  composes: block;
+  width: 5.5rem;
+  margin-right: auto;
+
+  @media (min-width: 640px) {
+    margin: 0.25rem auto;
+  }
+}
+
+.cardButton {
+  composes: block;
+  width: 6.5rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+}
+
+.cardIconButton {
+  composes: cardButton;
+  width: 2.75rem;
+
+  @media (min-width: 640px) {
+    width: auto;
+  }
+}
+
+.card:nth-child(3n + 2) {
+  .cardTitle {
+    width: 60%;
+  }
+
+  .cardTextShort {
+    width: 45%;
+  }
+}
+
+.card:nth-child(3n) {
+  .cardTitle {
+    width: 35%;
+  }
+
+  .cardTextShort {
+    width: 85%;
+  }
+}

@@ -17,14 +17,9 @@
   padding-block: 2rem;
 }
 
-.loading,
 .error {
   padding-block: 5rem;
   text-align: center;
-}
-
-.loadingText {
-  color: var(--text-muted);
 }
 
 .errorTitle {
@@ -211,5 +206,70 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: 0.75rem;
+  }
+}
+
+.skeletonBreadcrumb {
+  composes: block from '../components/Skeleton.module.css';
+  width: 14rem;
+  height: 0.875rem;
+  margin-block: 0.3rem 2.3rem;
+}
+
+.skeletonHeading {
+  flex: 1;
+}
+
+.skeletonTitle {
+  composes: block from '../components/Skeleton.module.css';
+  width: 85%;
+  height: 1.75rem;
+
+  & + & {
+    width: 55%;
+    margin-top: 0.5rem;
+  }
+
+  @media (min-width: 640px) {
+    height: 2.5rem;
+  }
+}
+
+.skeletonMeta {
+  composes: block from '../components/Skeleton.module.css';
+  width: 45%;
+  height: 1.25rem;
+  margin-block: 1rem 2.25rem;
+}
+
+.skeletonTags {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.skeletonButton {
+  composes: block from '../components/Skeleton.module.css';
+  height: 2.75rem;
+  margin-block: 2rem;
+  border-radius: 0.5rem;
+
+  @media (min-width: 640px) {
+    width: 9rem;
+  }
+}
+
+.skeletonSectionTitle {
+  composes: block from '../components/Skeleton.module.css';
+  width: 40%;
+  height: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.skeletonLine {
+  composes: block from '../components/Skeleton.module.css';
+  margin-bottom: 0.85rem;
+
+  &:last-child {
+    width: 60%;
   }
 }
